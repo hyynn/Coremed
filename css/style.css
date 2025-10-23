@@ -106,6 +106,7 @@ header:hover .login_box li.off { opacity: 0.2; pointer-events: none; }
 #section3 .centerbox .title_box p { color: #fafafa; font-weight: 400; } 
 #section3 .content_box .list { } 
 #section3 .title_box { color: #fafafa; } 
+#section3 .content_box span {font-weight: 500;}
 #section3 .content_box .list ul { list-style: none; display: flex; flex-direction: column; gap: 20px; } 
 #section3 .content_box .list li { display: flex; gap: 40px; align-items: flex-end; } 
 #section3 .content_box .list li { } 
