@@ -1,13 +1,19 @@
-$(document).ready(function () {
+document.addEventListener('DOMContentLoaded', function () {
 
-    $('header').load('include/header.html', function () {
+    // 헤더 로드
+    fetch('include/header.html')
+        .then(response => response.text())
+        .then(data => {
+            document.querySelector('header').innerHTML = data;
+        });
 
-    })
-
-    $('footer').load('include/footer.html', function () {
-
-    })
-})
+    // 푸터 로드
+    fetch('include/footer.html')
+        .then(response => response.text())
+        .then(data => {
+            document.querySelector('footer').innerHTML = data;
+        });
+});
 
 // 카운터 애니메이션
 function animateCounter(element) {
@@ -28,15 +34,59 @@ function animateCounter(element) {
 }
 
 // 스크롤 시 실행 (content3가 화면에 보일 때)
-$(window).on('scroll', function () {
-    const counter = $('.content3 .counter');
-    if (counter.length && !counter.hasClass('animated')) {
-        const counterTop = counter.offset().top;
-        const windowBottom = $(window).scrollTop() + $(window).height();
-
-        if (windowBottom > counterTop) {
-            counter.addClass('animated');
-            animateCounter(counter[0]);
+const counterObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(entry => {
+        if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
+            entry.target.classList.add('animated');
+            animateCounter(entry.target);
         }
-    }
+    });
+}, { threshold: 0.5 });
+
+const counter = document.querySelector('.content3 .counter');
+if (counter) {
+    counterObserver.observe(counter);
+}
+
+// 스크롤 애니메이션
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -100px 0px'
+};
+
+const observer = new IntersectionObserver(function (entries) {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+        }
+    });
+}, observerOptions);
+
+// 애니메이션 적용할 섹션들
+document.querySelectorAll('#section1, #section2, #section3, #section4').forEach(section => {
+    section.classList.add('scroll-fade');
+    observer.observe(section);
+});
+
+// 카드 순차 등장 애니메이션
+const cardObserverOptions = {
+    threshold: 0.2,
+    rootMargin: '0px 0px -50px 0px'
+};
+
+const cardObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const cards = entry.target.querySelectorAll('.content_item');
+            cards.forEach(card => {
+                card.classList.add('show');
+            });
+            cardObserver.unobserve(entry.target);
+        }
+    });
+}, cardObserverOptions);
+
+// section1, section2, sub04에 적용
+document.querySelectorAll('#section1, #section2, .sub04 .content_box').forEach(section => {
+    cardObserver.observe(section);
 });
