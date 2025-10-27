@@ -90,3 +90,26 @@ const cardObserver = new IntersectionObserver(function (entries) {
 document.querySelectorAll('#section1, #section2, .sub04 .content_box').forEach(section => {
     cardObserver.observe(section);
 });
+
+// sub01 text_box 애니메이션
+const sub01ObserverOptions = {
+    threshold: 0.3,
+    rootMargin: '0px 0px -100px 0px'
+};
+
+const sub01Observer = new IntersectionObserver(function (entries) {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const textBox = entry.target.querySelector('.text_box');
+            if (textBox) {
+                textBox.classList.add('show');
+            }
+            sub01Observer.unobserve(entry.target);
+        }
+    });
+}, sub01ObserverOptions);
+
+// sub01의 각 섹션 관찰
+document.querySelectorAll('.sub01 .section').forEach(section => {
+    sub01Observer.observe(section);
+});

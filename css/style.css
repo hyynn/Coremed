@@ -190,6 +190,23 @@ footer .centerbox .infobox .info:last-child { font-size: 14px; }
 .sub01 .section:first-child .centerbox .text_box h3 { color: #032753; } 
 .sub01 .section:nth-child(2) .centerbox .text_box h3 { color: #ACBFFF; } 
 
+/* sub01 text_box 스크롤 애니메이션 */
+.sub01 .section .text_box {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease, transform 1s ease;
+}
+
+.sub01 .section .text_box.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 각 섹션 순차 지연 */
+.sub01 .section:nth-child(1) .text_box { transition-delay: 0s; }
+.sub01 .section:nth-child(2) .text_box { transition-delay: 0.15s; }
+.sub01 .section:nth-child(3) .text_box { transition-delay: 0.3s; }
+
 .sub01 .section:nth-child(3) .centerbox { display: flex; width: 1400px; left: 13%; top: 20%; justify-content: space-between; } 
 .sub01 .section:nth-child(3) .centerbox h3 { font-weight: normal; font-weight: 500; color: #fafafa; font-size: 128px; line-height: 0.9; } 
 .counter { display: inline-block; min-width: 3ch; /* 3글자 너비 고정 */
