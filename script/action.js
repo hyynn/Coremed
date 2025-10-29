@@ -5,6 +5,17 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(response => response.text())
         .then(data => {
             document.querySelector('header').innerHTML = data;
+
+            // 현재 페이지에 맞는 메뉴 활성화
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const gnbItems = document.querySelectorAll('header .gnb > li');
+
+            gnbItems.forEach(li => {
+                const link = li.querySelector('a');
+                if (link && link.getAttribute('href') === currentPage) {
+                    li.classList.add('on');
+                }
+            });
         });
 
     // 푸터 로드
@@ -16,6 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // 카운터 애니메이션
+
 function animateCounter(element) {
     const target = parseInt(element.getAttribute('data-target'));
     const duration = 1000;
@@ -34,6 +46,7 @@ function animateCounter(element) {
 }
 
 // 스크롤 시 실행 (content3가 화면에 보일 때)
+
 const counterObserver = new IntersectionObserver(function (entries) {
     entries.forEach(entry => {
         if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
@@ -92,6 +105,7 @@ document.querySelectorAll('#section1, #section2, .sub04 .content_box').forEach(s
 });
 
 // sub01 text_box 애니메이션
+
 const sub01ObserverOptions = {
     threshold: 0.3,
     rootMargin: '0px 0px -100px 0px'
@@ -109,7 +123,6 @@ const sub01Observer = new IntersectionObserver(function (entries) {
     });
 }, sub01ObserverOptions);
 
-// sub01의 각 섹션 관찰
 document.querySelectorAll('.sub01 .section').forEach(section => {
     sub01Observer.observe(section);
 });
