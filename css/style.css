@@ -1,7 +1,17 @@
 @charset "UTF-8";
 
 /* ===== CSS 변수 ===== */
-:root { --color-primary: #032753; --color-text: #333; --color-bg: #fafafa; --color-sub: #404040; --color-mid: #505050; --color-border: #ddd; --color-light: #f5f5f5; --transition: 0.3s ease; --shadow: 0 1px 4px rgba(0,0,0,0.08); --radius: 10px; }
+:root { --color-primary: #032753;
+        --color-secondary:#ACBFFF;
+        --color-text: #333;
+        --color-bg: #fafafa;
+        --color-sub: #404040;
+        --color-mid: #505050;
+        --color-border: #ddd;
+        --color-light: #f5f5f5;
+        --transition: 0.3s ease;
+        --shadow: 0 1px 4px rgba(0,0,0,0.08);
+        --radius: 10px; }
 
 /* ===== 리셋 ===== */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Pretendard Variable', 'Pretendard', sans-serif; }
@@ -153,7 +163,7 @@ footer .centerbox .infobox .info:last-child { font-size: 14px; }
 .sub01 .section .centerbox .text-box p.desc { font-weight: 500; font-size: clamp(14px, 1.04vw, 20px); line-height: 1.6; margin-top: 10px; }
 .sub01 .section:first-child .centerbox .text-box { color: var(--color-text); }
 .sub01 .section:first-child .centerbox .text-box h3 { color: var(--color-primary); }
-.sub01 .section:nth-child(2) .centerbox .text-box h3 { color: #acbfff; }
+.sub01 .section:nth-child(2) .centerbox .text-box h3 { color: var(--color-secondary); }
 .sub01 .section .text-box { opacity: 0; transform: translateY(50px); transition: opacity 0.8s ease, transform 1s ease; }
 .sub01 .section .text-box.show { opacity: 1; transform: translateY(0); }
 .sub01 .section:nth-child(1) .text-box { transition-delay: 0s; }
